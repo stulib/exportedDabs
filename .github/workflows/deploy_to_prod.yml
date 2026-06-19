@@ -1,0 +1,37 @@
+name: Deploy to prod
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod   # configure required reviewers in repo settings
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Validate bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+          DATABRICKS_BUNDLE_ENV: prod
+          BUNDLE_VAR_catalog: ${{ secrets.catalog }}
+          BUNDLE_VAR_schema: ${{ secrets.schema }}
+          BUNDLE_VAR_prod_sp_app_id: ${{ secrets.PROD_SP_APP_ID }}
+        run: databricks bundle validate --output json
+
+      - name: Deploy bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+          DATABRICKS_BUNDLE_ENV: prod
+          BUNDLE_VAR_catalog: ${{ secrets.catalog }}
+          BUNDLE_VAR_schema: ${{ secrets.schema }}
+          BUNDLE_VAR_prod_sp_app_id: ${{ secrets.PROD_SP_APP_ID }}
+        run: databricks bundle deploy
