@@ -1,13 +1,12 @@
-name: Deploy to prod
+name: Deploy to staging
 on:
   push:
-    tags: ["v*"]
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: prod   # configure required reviewers in repo settings
+    environment: staging
     steps:
       - uses: actions/checkout@v4
 
@@ -19,10 +18,9 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          DATABRICKS_BUNDLE_ENV: prod
+          DATABRICKS_BUNDLE_ENV: staging
           BUNDLE_VAR_catalog: ${{ secrets.catalog }}
           BUNDLE_VAR_schema: ${{ secrets.schema }}
-          BUNDLE_VAR_prod_sp_app_id: ${{ secrets.PROD_SP_APP_ID }}
         run: databricks bundle validate --output json
 
       - name: Deploy bundle
@@ -30,8 +28,7 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          DATABRICKS_BUNDLE_ENV: prod
+          DATABRICKS_BUNDLE_ENV: staging
           BUNDLE_VAR_catalog: ${{ secrets.catalog }}
           BUNDLE_VAR_schema: ${{ secrets.schema }}
-          BUNDLE_VAR_prod_sp_app_id: ${{ secrets.PROD_SP_APP_ID }}
         run: databricks bundle deploy

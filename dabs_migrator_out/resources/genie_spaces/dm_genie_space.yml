@@ -1,0 +1,6 @@
+resources:
+  genie_spaces:
+    dm_genie_space:
+      title: "dm_genie_space"
+      description: "Seed Genie space for the dabs-migrator test."
+      warehouse_id: "18fdd549dc567e5b"

@@ -1,0 +1,7 @@
+resources:
+  quality_monitors:
+    dm_seed_events:
+      table_name: "classic_stable_aiy0te.dabs_test.dm_seed_events"
+      output_schema_name: "classic_stable_aiy0te.dabs_test"
+      assets_dir: "/Workspace/Users/stuart.libby@databricks.com/dm_seed_events_monitor"
+      snapshot: {}

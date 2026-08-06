@@ -20,7 +20,6 @@ jobs:
           DATABRICKS_BUNDLE_ENV: staging
           BUNDLE_VAR_catalog: ${{ secrets.catalog }}
           BUNDLE_VAR_schema: ${{ secrets.schema }}
-          BUNDLE_VAR_staging_sp_app_id: ${{ secrets.STAGING_SP_APP_ID }}
         run: databricks bundle validate --output json | tee bundle-validate.json
 
       - uses: actions/upload-artifact@v4

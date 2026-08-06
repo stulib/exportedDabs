@@ -1,0 +1,8 @@
+resources:
+  volumes:
+    dm_seed_volume:
+      catalog_name: ${var.catalog}
+      schema_name: ${var.schema}
+      name: "dm_seed_volume"
+      volume_type: "MANAGED"
+      comment: "Seed managed volume for the dabs-migrator test."

@@ -1,0 +1,12 @@
+resources:
+  pipelines:
+    dm_pipeline:
+      name: "dm_pipeline"
+      catalog: ${var.catalog}
+      schema: ${var.schema}
+      serverless: true
+      edition: "ADVANCED"
+      channel: "CURRENT"
+      libraries:
+        - notebook:
+            path: ../../src/dm_pipeline/bronze.py

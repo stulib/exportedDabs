@@ -1,12 +1,13 @@
-name: Deploy to staging
+name: Deploy to prod
 on:
   push:
-    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: staging
+    environment: prod
     steps:
       - uses: actions/checkout@v4
 
@@ -18,10 +19,9 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          DATABRICKS_BUNDLE_ENV: staging
+          DATABRICKS_BUNDLE_ENV: prod
           BUNDLE_VAR_catalog: ${{ secrets.catalog }}
           BUNDLE_VAR_schema: ${{ secrets.schema }}
-          BUNDLE_VAR_staging_sp_app_id: ${{ secrets.STAGING_SP_APP_ID }}
         run: databricks bundle validate --output json
 
       - name: Deploy bundle
@@ -29,8 +29,7 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
           DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
-          DATABRICKS_BUNDLE_ENV: staging
+          DATABRICKS_BUNDLE_ENV: prod
           BUNDLE_VAR_catalog: ${{ secrets.catalog }}
           BUNDLE_VAR_schema: ${{ secrets.schema }}
-          BUNDLE_VAR_staging_sp_app_id: ${{ secrets.STAGING_SP_APP_ID }}
         run: databricks bundle deploy
