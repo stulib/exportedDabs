@@ -1,6 +1,0 @@
-resources:
-  dashboards:
-    dm_dashboard:
-      display_name: "dm_dashboard"
-      file_path: ../../src/dm_dashboard/dashboard.lvdash.json
-      warehouse_id: "3d88569992117402"

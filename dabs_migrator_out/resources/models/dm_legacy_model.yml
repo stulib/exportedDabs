@@ -1,5 +1,0 @@
-resources:
-  models:
-    dm_legacy_model:
-      name: "dm_legacy_model"
-      description: "Seed legacy workspace-registry model for the dabs-migrator test."
