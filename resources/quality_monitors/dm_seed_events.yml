@@ -1,0 +1,7 @@
+resources:
+  quality_monitors:
+    dm_quality_monitor:
+      table_name: ${var.catalog}.${var.schema}.dm_seed_events
+      output_schema_name: ${var.catalog}.${var.schema}
+      assets_dir: /Workspace/Shared/dabs_migrator_seed/monitor_assets
+      snapshot: {}

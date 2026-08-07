@@ -1,0 +1,72 @@
+{
+  "datasets": [
+    {
+      "name": "ds_events",
+      "displayName": "events_by_category",
+      "queryLines": [
+        "SELECT category, count(*) AS c\n",
+        "FROM classic_stable_aiy0te.dabs_test.dm_seed_events\n",
+        "GROUP BY category"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "page_overview",
+      "displayName": "Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "w_bar",
+            "queries": [
+              {
+                "name": "q_main",
+                "query": {
+                  "datasetName": "ds_events",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "c",
+                      "expression": "`c`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "category"
+                },
+                "y": {
+                  "fieldName": "c",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "c"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ]
+}

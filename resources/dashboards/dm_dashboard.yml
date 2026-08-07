@@ -1,0 +1,7 @@
+resources:
+  dashboards:
+    dm_dashboard:
+      display_name: dm_dashboard
+      warehouse_id: ${var.warehouse_id}
+      file_path: ../../src/dm_dashboard/dashboard.lvdash.json
+      embed_credentials: false
