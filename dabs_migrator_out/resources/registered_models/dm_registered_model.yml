@@ -1,0 +1,7 @@
+resources:
+  registered_models:
+    dm_registered_model:
+      catalog_name: ${var.catalog}
+      schema_name: ${var.schema}
+      name: dm_registered_model
+      comment: "Seed UC registered model for the dabs-migrator test."

@@ -1,0 +1,4 @@
+resources:
+  experiments:
+    dm_experiment:
+      name: /Users/stuart.libby@databricks.com/dm_experiment

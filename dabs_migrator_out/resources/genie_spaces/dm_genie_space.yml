@@ -1,0 +1,7 @@
+resources:
+  genie_spaces:
+    dm_genie_space:
+      title: dm_genie_space
+      description: "Seed Genie space for the dabs-migrator test."
+      warehouse_id: ${var.warehouse_id}
+      file_path: ../../src/dm_genie_space/space.geniespace.json

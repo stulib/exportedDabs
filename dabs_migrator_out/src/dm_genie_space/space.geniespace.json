@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "data_sources": {
+    "tables": [
+      {
+        "identifier": "classic_stable_aiy0te.dabs_test.dm_seed_events"
+      }
+    ]
+  },
+  "config": {
+    "sample_questions": [
+      {
+        "id": "q1",
+        "question": [
+          "How many events are there by category?"
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "text_instructions": [
+      {
+        "id": "i1",
+        "content": [
+          "This space provides access to the dm_seed_events table for testing."
+        ]
+      }
+    ]
+  }
+}

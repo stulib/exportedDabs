@@ -1,0 +1,21 @@
+resources:
+  clusters:
+    dm_cluster:
+      cluster_name: dm_cluster
+      spark_version: "16.4.x-scala2.12"
+      node_type_id: Standard_D2ds_v6
+      driver_node_type_id: Standard_D2ds_v6
+      num_workers: 0
+      data_security_mode: SINGLE_USER
+      single_user_name: stuart.libby@databricks.com
+      autotermination_minutes: 10
+      enable_elastic_disk: true
+      spark_conf:
+        spark.databricks.cluster.profile: singleNode
+        spark.master: "local[*]"
+      custom_tags:
+        ResourceClass: SingleNode
+      azure_attributes:
+        availability: ON_DEMAND_AZURE
+        first_on_demand: 1
+        spot_bid_max_price: -1

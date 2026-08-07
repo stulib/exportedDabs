@@ -1,0 +1,28 @@
+name: Validate bundle
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Validate bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+          DATABRICKS_BUNDLE_ENV: staging
+          BUNDLE_VAR_catalog: ${{ secrets.catalog }}
+          BUNDLE_VAR_schema: ${{ secrets.schema }}
+        run: databricks bundle validate --output json | tee bundle-validate.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bundle-validate
+          path: bundle-validate.json

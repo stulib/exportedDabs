@@ -1,0 +1,63 @@
+{
+  "datasets": [
+    {
+      "name": "dashboards/01f19285edaf1e498f755230b085fc87/datasets/01f19285edb01095b161b0c3f52a316f",
+      "displayName": "events_by_category",
+      "query": "SELECT category, count(*) AS c\nFROM classic_stable_aiy0te.dabs_test.dm_seed_events\nGROUP BY category",
+      "catalog": null,
+      "schema": null
+    }
+  ],
+  "pages": [
+    {
+      "name": "dashboards/01f19285edaf1e498f755230b085fc87/pages/01f19285edb010b99d3505b44b6cc24c",
+      "displayName": "Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "dashboards/01f19285edaf1e498f755230b085fc87/pages/01f19285edb010b99d3505b44b6cc24c/widgets/01f19285edb010c8b7f68ef16ce78b69",
+            "displayName": "",
+            "queries": [
+              {
+                "name": "q_main",
+                "query": {
+                  "datasetName": "dashboards/01f19285edaf1e498f755230b085fc87/datasets/01f19285edb01095b161b0c3f52a316f",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "c",
+                      "expression": "`c`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "category"
+                },
+                "y": {
+                  "fieldName": "c",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "c"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
